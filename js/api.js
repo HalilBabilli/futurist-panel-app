@@ -4,7 +4,7 @@ const ClaudeAPI = (function() {
     'use strict';
 
     const API_URL = 'https://api.anthropic.com/v1/messages';
-    const MODEL = 'claude-sonnet-4-20250514';
+    const MODEL = 'claude-opus-4-5-20250514';
     const MAX_TOKENS = 4096;
 
     let apiKey = null;
