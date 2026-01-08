@@ -23,6 +23,27 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- API Configuration -->
+            <section class="api-section">
+                <div class="api-card">
+                    <div class="api-header">
+                        <span class="api-icon">🔑</span>
+                        <h3>Claude API Configuration</h3>
+                        <span class="api-status" id="apiStatus">Not configured</span>
+                    </div>
+                    <div class="api-input-wrapper">
+                        <input type="password" id="apiKeyInput" class="api-input"
+                               placeholder="Enter your Anthropic API key (sk-ant-...)"
+                               autocomplete="off">
+                        <button id="toggleApiKey" class="toggle-visibility" title="Show/Hide API key">
+                            <span>👁️</span>
+                        </button>
+                        <button id="saveApiKey" class="save-api-btn">Save</button>
+                    </div>
+                    <p class="api-note">Your API key is stored locally in your browser and never sent to any server except Anthropic's API.</p>
+                </div>
+            </section>
+
             <!-- Input Section -->
             <section class="input-section">
                 <div class="input-card">
@@ -50,7 +71,13 @@
 
                 <!-- Analyst Selection -->
                 <div class="analyst-selection">
-                    <h3>Select Analysts</h3>
+                    <div class="section-header">
+                        <h3>Select Analysts</h3>
+                        <div class="selection-actions">
+                            <button id="selectAllBtn" class="selection-btn">Select All</button>
+                            <button id="deselectAllBtn" class="selection-btn">Deselect All</button>
+                        </div>
+                    </div>
                     <div class="analysts-grid">
                         <label class="analyst-card selected" data-analyst="tech">
                             <input type="checkbox" name="analyst" value="tech" checked>
@@ -119,8 +146,11 @@
                 <div class="results-header">
                     <h2>Panel Analysis</h2>
                     <div class="results-actions">
-                        <button id="copyPromptBtn" class="action-btn" title="Copy prompt for Claude">
-                            <span>📋</span> Copy Prompt
+                        <button id="stopBtn" class="action-btn stop-btn" title="Stop generation" style="display: none;">
+                            <span>⏹️</span> Stop
+                        </button>
+                        <button id="regenerateBtn" class="action-btn" title="Regenerate analysis">
+                            <span>🔄</span> Regenerate
                         </button>
                         <button id="exportBtn" class="action-btn" title="Export analysis">
                             <span>💾</span> Export
@@ -129,6 +159,14 @@
                             <span>🗑️</span> Clear
                         </button>
                     </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Initializing analysis...</div>
                 </div>
 
                 <div class="topic-display" id="topicDisplay">
@@ -146,6 +184,7 @@
                     <div class="synthesis-header">
                         <span class="synthesis-icon">🎯</span>
                         <h3>Futurist Prime Synthesis</h3>
+                        <span class="synthesis-status" id="synthesisStatus"></span>
                     </div>
                     <div class="synthesis-content" id="synthesisContent">
                         <!-- Synthesis content will be inserted here -->
@@ -175,8 +214,8 @@
         <footer class="footer">
             <div class="footer-content">
                 <p>Powered by <a href="https://claude.ai" target="_blank">Claude AI</a> |
-                   <a href="https://github.com" target="_blank">View on GitHub</a></p>
-                <p class="footer-note">Use the generated prompts with Claude for AI-powered strategic foresight analysis</p>
+                   <a href="https://github.com/HalilBabilli/futurist-panel-app" target="_blank">View on GitHub</a></p>
+                <p class="footer-note">AI-powered strategic foresight analysis using Claude API</p>
             </div>
         </footer>
     </div>
@@ -184,10 +223,11 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
-        <p>Generating analysis framework...</p>
+        <p id="loadingText">Generating analysis...</p>
     </div>
 
     <script src="js/skills.js"></script>
+    <script src="js/api.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
