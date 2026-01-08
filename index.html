@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futurist Panel - Multi-Perspective Strategic Analysis</title>
+    <meta name="description" content="AI-powered strategic foresight tool with multi-perspective analysis from specialized futurist analysts">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🔮</span>
+                <h1>Futurist Panel</h1>
+            </div>
+            <p class="tagline">Multi-Perspective Strategic Foresight Analysis</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-card">
+                    <h2>What future do you want to explore?</h2>
+                    <div class="topic-input-wrapper">
+                        <input type="text" id="topicInput" class="topic-input"
+                               placeholder="e.g., The future of autonomous vehicles, AI's impact on healthcare..."
+                               autocomplete="off">
+                        <button id="analyzeBtn" class="analyze-btn">
+                            <span class="btn-text">Analyze</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick Topics -->
+                    <div class="quick-topics">
+                        <span class="quick-label">Quick topics:</span>
+                        <button class="quick-topic" data-topic="The future of work in the age of AI agents">AI & Work</button>
+                        <button class="quick-topic" data-topic="Will quantum computing break current encryption?">Quantum Security</button>
+                        <button class="quick-topic" data-topic="The geopolitics of semiconductor supply chains">Chip Wars</button>
+                        <button class="quick-topic" data-topic="How will AI transform education in the next decade?">Education</button>
+                        <button class="quick-topic" data-topic="The future of human longevity and healthspan">Longevity</button>
+                    </div>
+                </div>
+
+                <!-- Analyst Selection -->
+                <div class="analyst-selection">
+                    <h3>Select Analysts</h3>
+                    <div class="analysts-grid">
+                        <label class="analyst-card selected" data-analyst="tech">
+                            <input type="checkbox" name="analyst" value="tech" checked>
+                            <span class="analyst-icon">🔬</span>
+                            <span class="analyst-name">Tech Trajectory</span>
+                            <span class="analyst-focus">Technology feasibility & timelines</span>
+                        </label>
+                        <label class="analyst-card selected" data-analyst="geopolitical">
+                            <input type="checkbox" name="analyst" value="geopolitical" checked>
+                            <span class="analyst-icon">🌍</span>
+                            <span class="analyst-name">Geopolitical Tech</span>
+                            <span class="analyst-focus">Power dynamics & governance</span>
+                        </label>
+                        <label class="analyst-card selected" data-analyst="societal">
+                            <input type="checkbox" name="analyst" value="societal" checked>
+                            <span class="analyst-icon">👥</span>
+                            <span class="analyst-name">Societal Impact</span>
+                            <span class="analyst-focus">Human & cultural change</span>
+                        </label>
+                        <label class="analyst-card selected" data-analyst="business">
+                            <input type="checkbox" name="analyst" value="business" checked>
+                            <span class="analyst-icon">📊</span>
+                            <span class="analyst-name">AI-Age Strategy</span>
+                            <span class="analyst-focus">Business implications</span>
+                        </label>
+                        <label class="analyst-card selected" data-analyst="historical">
+                            <input type="checkbox" name="analyst" value="historical" checked>
+                            <span class="analyst-icon">📜</span>
+                            <span class="analyst-name">Historical Patterns</span>
+                            <span class="analyst-focus">Precedents & analogies</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Analysis Mode -->
+                <div class="mode-selection">
+                    <h3>Analysis Depth</h3>
+                    <div class="mode-options">
+                        <label class="mode-option">
+                            <input type="radio" name="mode" value="quick">
+                            <span class="mode-content">
+                                <span class="mode-name">Quick</span>
+                                <span class="mode-desc">1 paragraph per analyst</span>
+                            </span>
+                        </label>
+                        <label class="mode-option selected">
+                            <input type="radio" name="mode" value="standard" checked>
+                            <span class="mode-content">
+                                <span class="mode-name">Standard</span>
+                                <span class="mode-desc">2-3 paragraphs each</span>
+                            </span>
+                        </label>
+                        <label class="mode-option">
+                            <input type="radio" name="mode" value="deep">
+                            <span class="mode-content">
+                                <span class="mode-name">Deep Dive</span>
+                                <span class="mode-desc">Comprehensive analysis</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection">
+                <div class="results-header">
+                    <h2>Panel Analysis</h2>
+                    <div class="results-actions">
+                        <button id="copyPromptBtn" class="action-btn" title="Copy prompt for Claude">
+                            <span>📋</span> Copy Prompt
+                        </button>
+                        <button id="exportBtn" class="action-btn" title="Export analysis">
+                            <span>💾</span> Export
+                        </button>
+                        <button id="clearBtn" class="action-btn" title="Clear results">
+                            <span>🗑️</span> Clear
+                        </button>
+                    </div>
+                </div>
+
+                <div class="topic-display" id="topicDisplay">
+                    <span class="topic-label">Topic:</span>
+                    <span class="topic-text" id="topicText"></span>
+                </div>
+
+                <!-- Analyst Panels -->
+                <div class="panels-container" id="panelsContainer">
+                    <!-- Panels will be dynamically inserted here -->
+                </div>
+
+                <!-- Synthesis Section -->
+                <div class="synthesis-section" id="synthesisSection">
+                    <div class="synthesis-header">
+                        <span class="synthesis-icon">🎯</span>
+                        <h3>Futurist Prime Synthesis</h3>
+                    </div>
+                    <div class="synthesis-content" id="synthesisContent">
+                        <!-- Synthesis content will be inserted here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prompt Preview Modal -->
+            <div class="modal" id="promptModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Generated Prompt</h3>
+                        <button class="modal-close" id="closeModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="modal-instruction">Copy this prompt and paste it into Claude to run the analysis:</p>
+                        <textarea id="promptPreview" readonly></textarea>
+                        <div class="modal-actions">
+                            <button id="copyFullPrompt" class="primary-btn">Copy to Clipboard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>Powered by <a href="https://claude.ai" target="_blank">Claude AI</a> |
+                   <a href="https://github.com" target="_blank">View on GitHub</a></p>
+                <p class="footer-note">Use the generated prompts with Claude for AI-powered strategic foresight analysis</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>Generating analysis framework...</p>
+    </div>
+
+    <script src="js/skills.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
