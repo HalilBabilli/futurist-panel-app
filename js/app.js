@@ -109,13 +109,11 @@
             });
         });
 
-        // Analyst selection
+        // Analyst selection - listen to checkbox change event instead of card click
+        // (label elements automatically toggle their checkbox, so we just listen for the change)
         elements.analystCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (e.target.type !== 'checkbox') {
-                    const checkbox = card.querySelector('input[type="checkbox"]');
-                    checkbox.checked = !checkbox.checked;
-                }
+            const checkbox = card.querySelector('input[type="checkbox"]');
+            checkbox.addEventListener('change', () => {
                 updateAnalystSelection();
             });
         });
